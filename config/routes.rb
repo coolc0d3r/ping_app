@@ -1,7 +1,6 @@
 PingApp::Application.routes.draw do
 
   resources :users
-  get "users/new"
   match '/signup', to: 'users#new'
 
   get "static_pages/home"
