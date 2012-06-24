@@ -1,8 +1,11 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'bootstrap-sass', '2.0.0'
-gem 'bcrypt-ruby', '3.0.1'
+gem 'bootstrap-sass', '2.0.0' # Twitter Bootstrap
+gem 'bcrypt-ruby', '3.0.1' # To create secure session
+gem 'faker', '1.0.1' # To create sample users
+gem 'will_paginate', '3.0.3' # Pagination
+gem 'bootstrap-will_paginate', '0.0.6' # Bootstrap pagination styles
 
 group :development do
   gem 'sqlite3', '1.3.5'

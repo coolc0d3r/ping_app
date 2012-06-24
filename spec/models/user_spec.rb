@@ -24,8 +24,12 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:admin) }
+  it { should respond_to(:authenticate) }
+  
   
   it { should be_valid }
+  it { should_not be_admin }
   
   describe "when name is not present" do
     before { @user.name = " " }
@@ -65,7 +69,7 @@ describe User do
    describe "email address with mixed case" do
     let(:mixed_case_email) { "Foo@ExAMPle.CoM" }
 
-    it "should be saved as all lower-case" do
+    it "should be saved as all lowercase" do
       @user.email = mixed_case_email
       @user.save
       @user.reload.email.should == mixed_case_email.downcase
@@ -123,5 +127,11 @@ describe User do
       before { @user.save }
       its(:remember_token) { should_not be_blank }
     end
+  end
+  
+  describe "with admin attribute set to 'true'" do
+    before { @user.toggle!(:admin) }
+    
+    it { should be_admin }
   end
 end
