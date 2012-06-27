@@ -43,6 +43,10 @@ describe "Authentication" do
         describe "followed by signout" do
           before { click_link "Sign out" }
           it { should have_link('Sign in') }
+          
+          it { should_not have_link('Profile') }
+          it { should_not have_link('Settings') }
+          
         end
         end
     end
@@ -84,7 +88,19 @@ describe "Authentication" do
             it { should have_selector('title', text: 'Sign in') }
             end
           end
-      end  
+      
+      describe "in the Microposts controller" do
+      
+        describe "submitting to the create action" do
+          before { post microposts_path }
+          specify { response.should redirect_to(signin_path) }
+        end
+        
+        describe "submitting to the destroy action" do
+          before { delete micropost_path(FactoryGirl.create(:micropost)) }
+          specify { response.should redirect_to(signin_path) }
+        end
+      end
 
       describe "as wrong user" do
         let(:user) { FactoryGirl.create(:user) }
@@ -114,3 +130,4 @@ describe "Authentication" do
         end
       end
     end
+end
