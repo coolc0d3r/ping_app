@@ -1,8 +1,15 @@
 <% provide(:title) %>
 
 <% if signed_in? %>
-
-  <%= render 'shared/user_home' %>
+  <section>
+    <%= render 'shared/user_home' %>
+  </section>
+  <section>
+    <%= render 'shared/stats' %>
+  </section>
+  <section>
+    <%= render 'shared/micropost_form' %>
+  </section>
  
 <% else %>
 
